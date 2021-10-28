@@ -1,28 +1,48 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <welcome v-if="!this.$store.state.started" class="animate__animated animate__fadeIn"></welcome>
+    <div v-else>
+      <quiz v-show="this.$store.state.resultMessage == ''" class="animate__animated animate__fadeIn"></quiz>
+      <result v-show="this.$store.state.resultMessage != ''" class="animate__animated animate__flipInX"></result>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Welcome from "./components/Welcome.vue"
+import Quiz from "./components/Quiz.vue"
+import Result from "./components/Result.vue"
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Welcome,Quiz,Result
+  },
+  data() {
+    return {
+    }
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Zen Old Mincho', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  position: relative;  
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-color: #fbd663;
+  justify-content: center;
+  align-items: center;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 </style>
